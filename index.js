@@ -38,7 +38,7 @@ function notesShow() {
     }
     let domShow = "";
     strnoteobj.forEach(function (element, index) {
-        domShow += `  <div class="card text-dark bg-warning mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex">
+        domShow += `  <div class="card text-dark bg-warning mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem">
         <div class="card-header">Note ${index + 1} <button type="button" onclick="deleteNote(this.id)" class="btn-close" aria-label="Close"
                 style="float: right;" id="${index}"></button></div>
         <div class="card-body">
@@ -49,8 +49,13 @@ function notesShow() {
         </div>`;
     });
     document.getElementById("oops").innerHTML = domShow;
-    if (strnoteobj==null && strtitleobj==null){
-        domShow.innerHTML=("No notes found!! Add some please");
+    if (strnoteobj.length!=0 && strtitleobj.length!=0){
+        // domShow.innerHTML=(`No notes found!! Add some please`);
+        let emptyNote=document.getElementById("emptyNote");
+        emptyNote.style.display="none";
+    }
+    else{
+        emptyNote.style.display="block";
     }
 }
 function deleteNote(index) {

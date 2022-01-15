@@ -38,6 +38,8 @@ function notesShow() {
         strtitleobj = JSON.parse(strTitle);
     }
     let domShow = "";
+    let favindex = localStorage.getItem("favIndexstr");
+    favindex = JSON.parse(favindex);
     strnoteobj.forEach(function (element, index) {
         domShow += `  <div class="card text-dark bg-warning mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem">
         <div class="card-header">Note ${index + 1} <button type="button" onclick="deleteNote(this.id)" class="btn-close" aria-label="Close"
@@ -49,6 +51,11 @@ function notesShow() {
 
         </div>
     </div>`;
+
+    // ************** trying to add the feature when the notes added to fav the button disappears
+        // if (favindex.index == index) {
+        //     document.getElementById("index").style.display = "none";
+        // }
     });
 
     document.getElementById("oops").innerHTML = domShow;
@@ -100,7 +107,6 @@ search.addEventListener("input", function () {
     });
 });
 function addFav(favIndex) {
-    // document.getElementById("favIndex").style.display="none";
     let favIndexobj;
     favIndex = (favIndex / 100);
     let favIndexstr = localStorage.getItem("favIndexstr");
@@ -116,7 +122,12 @@ function addFav(favIndex) {
 
 function favourites() {
     let favcount = localStorage.getItem("favIndexstr");
-    favcount = JSON.parse(favcount);
+    if (favcount==null){
+        favcount=[];
+    }
+    else{
+        favcount = JSON.parse(favcount);
+    }
     let favDomshow = "";
     favcount.forEach(function (element, index) {
         favDomshow += `  <div class="card text-dark bg-warning mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem">
@@ -131,16 +142,19 @@ function favourites() {
     </div>`;
         document.getElementById("oops").innerHTML = favDomshow;
     });
-    if (favcount.length==0){
+    if (favcount.length == 0) {
         document.getElementById("oops").innerHTML = "<h5>Nothing to show!</h5>";
     }
 
 }
-function rmFav(index){
-    index=(index/1000);
-    let rmCounter=localStorage.getItem("favIndexstr");
-    rmCounter=JSON.parse(rmCounter);
-    rmCounter.splice(index,1);
-    localStorage.setItem("favIndexstr",JSON.stringify(rmCounter));
+function rmFav(index) {
+    index = (index / 1000);
+    let rmCounter = localStorage.getItem("favIndexstr");
+    rmCounter = JSON.parse(rmCounter);
+    rmCounter.splice(index, 1);
+    localStorage.setItem("favIndexstr", JSON.stringify(rmCounter));
     favourites();
 }
+// remaining features are show feature button changes dynamicly to show notes button when pressed
+// syncing the notes to the server
+// making a chrome extension and syncing that to the server

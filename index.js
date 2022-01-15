@@ -41,13 +41,13 @@ function notesShow() {
     let favindex = localStorage.getItem("favIndexstr");
     favindex = JSON.parse(favindex);
     strnoteobj.forEach(function (element, index) {
-        domShow += `  <div class="card text-dark bg-warning mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem">
+        domShow += `  <div class="card text-dark bg-info mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem">
         <div class="card-header">Note ${index + 1} <button type="button" onclick="deleteNote(this.id)" class="btn-close" aria-label="Close"
                 style="float: right;" id="${index}"></button></div>
         <div class="card-body">
             <h5 class="card-title">${strtitleobj[index]}</h5>
             <p class="card-text">${element}</p>
-            <button type="button" class="btn btn-outline-light" id="${index}00" onclick="addFav(this.id)">Add to fav</button>
+            <button type="button" class="btn btn-danger" id="${index}00" onclick="addFav(this.id)">Add to fav</button>
 
         </div>
     </div>`;
@@ -130,13 +130,13 @@ function favourites() {
     }
     let favDomshow = "";
     favcount.forEach(function (element, index) {
-        favDomshow += `  <div class="card text-dark bg-warning mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem">
+        favDomshow += `  <div class="card text-dark bg-info mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem;">
         <div class="card-header">Note ${element} <button type="button" onclick="deleteNote(this.id)" class="btn-close" aria-label="Close"
                 style="float: right;" id="${index}"></button></div>
         <div class="card-body">
             <h5 class="card-title">${strtitleobj[element]}</h5>
             <p class="card-text">${strnoteobj[element]}</p>
-        <button type="button" class="my-3 mx-3 btn btn-outline-danger remFavcl" id="${index}000" onclick="rmFav(this.id)">Remove from Fav </button>
+        <button type="button" class="my-3 mx-3 btn btn-danger remFavcl" id="${index}000" onclick="rmFav(this.id)">Remove from Fav </button>
 
         </div>
     </div>`;

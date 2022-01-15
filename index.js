@@ -84,14 +84,11 @@ search.addEventListener("input", function () {
     let card = document.getElementsByClassName("card");
     Array.from(card).forEach(function (element) {
         let noteTxt = element.getElementsByTagName("p")[0].innerText;
+        let titlTxt = element.getElementsByTagName("h5")[0].innerText;
         if (noteTxt.includes(search.value)) {
             element.style.display = "inline-flex";
         }
-        else {
-            element.style.display = "none";
-        }
-        let titlTxt = element.getElementsByTagName("h5")[0].innerText;
-        if (titlTxt.includes(search.value)) {
+        else if(titlTxt.includes(search.value)) {
             element.style.display = "inline-flex";
         }
         else {

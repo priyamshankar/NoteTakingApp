@@ -67,6 +67,8 @@ function notesShow() {
     else {
         emptyNote.style.display = "block";
     }
+    document.getElementById("showFav").style.display="inline-block";
+    document.getElementById("showNote").style.display="none";
 }
 function deleteNote(index) {
     // alert(index);
@@ -131,8 +133,7 @@ function favourites() {
     let favDomshow = "";
     favcount.forEach(function (element, index) {
         favDomshow += `  <div class="card text-dark bg-warning mb-3 mx-3 my-3" style="max-width: 18rem;display:inline-flex;min-width: 10rem">
-        <div class="card-header">Note ${element} <button type="button" onclick="deleteNote(this.id)" class="btn-close" aria-label="Close"
-                style="float: right;" id="${index}"></button></div>
+        <div class="card-header">Note ${element+1} </div>
         <div class="card-body">
             <h5 class="card-title">${strtitleobj[element]}</h5>
             <p class="card-text">${strnoteobj[element]}</p>
@@ -145,6 +146,9 @@ function favourites() {
     if (favcount.length == 0) {
         document.getElementById("oops").innerHTML = "<h5>Nothing to show!</h5>";
     }
+    document.getElementById("showFav").style.display="none";
+    document.getElementById("showNote").style.display="inline-block";
+    
 
 }
 function rmFav(index) {
@@ -155,6 +159,8 @@ function rmFav(index) {
     localStorage.setItem("favIndexstr", JSON.stringify(rmCounter));
     favourites();
 }
+
 // remaining features are show feature button changes dynamicly to show notes button when pressed
 // syncing the notes to the server
 // making a chrome extension and syncing that to the server
+//when deletin, delete it from the favourite menu too..

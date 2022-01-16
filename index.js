@@ -1,6 +1,4 @@
 notesShow();
-// let remFavcl = document.getElementsByClassName("remFavcl");
-//     remFavcl.style.display = "none";
 let title = document.getElementById("exampleFormControlInput1");
 let note = document.getElementById("exampleFormControlTextarea1");
 let add_note = document.getElementById("add_note");
@@ -71,11 +69,8 @@ function notesShow() {
     document.getElementById("showNote").style.display="none";
 }
 function deleteNote(index) {
-    // alert(index);
     let strnote = localStorage.getItem("strnote");
     let strTitle = localStorage.getItem("strTitle");
-    // let strnoteobj;
-    // let strtitleobj;
     if (strnote == null && strTitle == null) {
         strnoteobj = [];
         strtitleobj = [];
